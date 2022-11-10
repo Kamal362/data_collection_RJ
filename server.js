@@ -18,7 +18,7 @@ const USERS = []
 // write details into a file
 
 function store(details){
-    fs.appendFileSync('./logs/_doc.txt', JSON.stringify(details), (err) =>{
+    fs.appendFileSync('./logs/_doc.json', JSON.stringify(details), (err) =>{
         if (err) console.log(err)
         else console.log("details recorded successfully")
     })
@@ -49,17 +49,21 @@ app.post('/register', (req, res) => {
     USERS.push({
         username: req.body.username,
         index_number: req.body.index_number,
-        password: req.body.password
+        password: req.body.password,
+        phone: req.body.phone_number,
+        DoB: req.body.DoB
     })
 
-    res.send("<h1> user addad successfully  <a href='/'>Home<a>")
+    res.send("<h1> user addad successfully  <a href='/'>login page<a>")
 
     // saving user in a file __doc
     store({
-        title: "==== NEW USER =====",
+        title: "==== NEW USER ===== ",
         username: req.body.username,
         index_number: req.body.index_number,
-        password: req.body.password
+        password: req.body.password,
+        phone: req.body.phone_number,
+        DoB: req.body.DoB
     })
 })
 
